@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 import Container from "../component/Container";
 import { FaEyeSlash, FaEye } from "react-icons/fa6";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import toast, { Toaster } from "react-hot-toast";
 import img from "../assets/login.png";
 import axios from "axios";
 import RegistrationPatient from "./RegistrationPatient";
 const Login = () => {
+  const navigate=useNavigate()
   const [show, setShow] = useState(false);
   const [errormail, setErrormail] = useState("");
   const [errorRole, setEerrorRole] = useState("");
   const [errorpassword, setErrorPassword] = useState("");
   const [fromData, setFromData] = useState({
-
     email: "",
     password: "",
-    role:""
+    role: "",
   });
 
   const handleChange = (e) => {
     setFromData({ ...fromData, [e.target.name]: e.target.value });
   };
+  console.log("Role:", fromData.role);
   const handleClick = async () => {
     let isValid = true; // Track validity of all inputs
-    const {  email, password,role } = fromData;
+    const { email, password, role } = fromData;
     // Email validation
     if (!email) {
       setErrormail("Enter a mail here");
@@ -34,8 +35,6 @@ const Login = () => {
     } else {
       setErrormail(""); // Clear error if email is valid
     }
-
-   
 
     // Password validation
     if (!password) {
@@ -61,19 +60,32 @@ const Login = () => {
     }
 
     if (!role) {
-      setEerrorRole("specialization not required");
+      setEerrorRole("role is not requiered");
     } else {
       setEerrorRole("");
     }
 
     if (isValid) {
-      const res = await axios.post(
-        "https://appointment-manager-node.onrender.com/api/v1/auth/register/doctor",
-        fromData
-      );
-
-      toast.success("Registration successful ✅");
-      console.log("Response:", res.data);
+      try {
+        const res = await axios.post(
+          "https://appointment-manager-node.onrender.com/api/v1/auth/login",
+          fromData
+        );
+        toast.success("Login successful");
+        console.log("Response:", res.data.data.user.role);
+        if(res.data.data.user.role===fromData){
+            setTimeout(() => {
+                navigate("/patient")
+            }, 200);
+        }else{
+            setTimeout(()=>{
+                navigate("/doctor")
+            },200)
+        }
+      } catch (err) {
+        toast.error(err.response?.data?.message || "Login failed");
+        console.error(err);
+      }
     }
   };
   return (
@@ -88,7 +100,6 @@ const Login = () => {
             <p className="text-sm sm:text-base text-center text-gray-500 mb-8 mt-2">
               Welcome back! Please enter your details to log in.
             </p>
-
 
             {/* Email */}
             <div className="mb-5">
@@ -112,7 +123,8 @@ const Login = () => {
                 name="password"
                 onChange={handleChange}
                 type={show ? "text" : "password"}
-                className="w-full mt-2 py-3 px-4 shadow-md rounded-md outline-none placeholder:text-gray-400"
+                className="w-full mt-2 py-3 px-4 shadow-md rounded-md outline-none
+                 placeholder:text-gray-400"
                 placeholder="********"
               />
               <div className="text-red-600 font-medium text-[16px]">
@@ -129,19 +141,28 @@ const Login = () => {
                 )}
               </div>
             </div>
-             {/* Role */}
-              <div className="mb-5">
-              <label className="font-medium">Role</label>
-              <input
-                name="role"
-                onChange={handleChange}
-                type="email"
-                className="w-full mt-2 py-3 px-4 shadow-md rounded-md outline-none placeholder:text-gray-400"
-                placeholder="Enter your role"
-              />
-              <div className="text-red-600 font-medium text-[16px]">
-                {errormail}
-              </div>
+            {/* Role */}
+            <div className="mb-5">
+              <fieldset className="fieldset ">
+                <legend className="fieldset-legend">Role</legend>
+                <select
+                  name="role"
+                  value={fromData.role}
+                  className="select w-full mt-2 py-3 px-4 shadow-md rounded-md outline-none placeholder:text-gray-400"
+                  onChange={(e) =>
+                    setFromData({ ...fromData, role: e.target.value })
+                  }
+                >
+                  <option value="" disabled>
+                    Select Role
+                  </option>
+                  <option value="DOCTOR">Doctor</option>
+                  <option value="PATIENT">Patient</option> {/* corrected */}
+                </select>
+                <div className="text-red-600 font-medium text-[16px]">
+                  {errorRole}
+                </div>
+              </fieldset>
             </div>
 
             {/* Sign Up Button */}
@@ -162,14 +183,10 @@ const Login = () => {
             {/* Login Redirect */}
             <p className="text-center text-sm text-gray-500">
               Already have an account?{" "}
-              <Link
-                to="/"
-                className="text-black font-medium hover:underline"
-              >
+              <Link to="/" className="text-black font-medium hover:underline">
                 Sign up
               </Link>
             </p>
-           
           </div>
 
           {/* Left Image */}
