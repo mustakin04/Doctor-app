@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Container from "../component/Container";
 import { FaEyeSlash, FaEye } from "react-icons/fa6";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import toast, { Toaster } from "react-hot-toast";
 import img from "../assets/registration.jpg";
 import axios from "axios";
 import RegistrationPatient from "./RegistrationPatient";
 const Registration = () => {
+  const navigate=useNavigate()
   const [show, setShow] = useState(false);
   const [errormail, setErrormail] = useState("");
   const [errortext, setEerrorText] = useState("");
@@ -82,6 +83,9 @@ const Registration = () => {
 
       toast.success("Registration successful ✅");
       console.log("Response:", res.data);
+      setTimeout(() => {
+        navigate("/login")
+      },200);
     }
   };
   return (

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Container from "../component/Container";
 import { FaEyeSlash, FaEye } from "react-icons/fa6";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import toast, { Toaster } from "react-hot-toast";
 import patient from "../assets/Patient1.png"
 import axios from "axios";
 const RegistrationPatient = () => {
+  const navigate=useNavigate()
   const [show, setShow] = useState(false);
   const [errormail, setErrormail] = useState("");
   const [errortext, setEerrorText] = useState("");
@@ -79,6 +80,9 @@ const RegistrationPatient = () => {
 
     toast.success("Registration successful ✅");
     console.log("Response:", res.data);
+    setTimeout(() => {
+        navigate("/login")
+      },200);
   } catch (err) {
     if (err.response) {
       // Server responded but with error (e.g., 409, 500)
