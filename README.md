@@ -3,6 +3,11 @@
 A modern **React.js** frontend for booking and managing doctor appointments. This repository currently ships the **Patient** side (MVP) and focuses on clean state management and API integration. **Responsiveness is partially pending**; desktop-first layouts are implemented and mobile/tablet polishing is listed in the Roadmap.
 
 ---
+🌐 Live Demo
+
+Experience the app in action:
+
+👉 https://serene-quokka-88a00f.netlify.app/
 
 ## ✨ Features (Patient MVP)
 
