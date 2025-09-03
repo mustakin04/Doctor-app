@@ -80,56 +80,7 @@ npm run build
 
 ---
 
-## 🗂️ Project Structure
 
-```
-src/
-├─ App.js
-├─ index.js
-├─ routes/
-│  └─ PrivateRoute.js
-├─ pages/
-│  ├─ Login.js
-│  ├─ Register.js
-│  └─ patient/
-│     ├─ Dashboard.js
-│     └─ Appointments.js
-├─ components/
-│  ├─ Navbar.js
-│  ├─ ui/
-│  │  ├─ Button.js
-│  │  ├─ Modal.js
-│  │  ├─ Input.js
-│  │  ├─ Select.js
-│  │  └─ DatePicker.js
-│  ├─ doctors/
-│  │  ├─ DoctorCard.js
-│  │  └─ DoctorList.js
-│  └─ appointments/
-│     ├─ AppointmentCard.js
-│     └─ AppointmentList.js
-├─ redux/
-│  ├─ store.js
-│  └─ slices/
-│     ├─ authSlice.js
-│     ├─ doctorSlice.js
-│     └─ appointmentSlice.js
-├─ services/
-│  ├─ axiosInstance.js
-│  ├─ authService.js
-│  ├─ doctorService.js
-│  ├─ appointmentService.js
-│  └─ specializationService.js
-├─ hooks/
-│  ├─ useAuth.js
-│  └─ usePagination.js
-├─ utils/
-│  └─ formatDate.js
-└─ styles/
-   └─ globals.css
-```
-
----
 
 ## 🔐 Authentication Flow (Patient)
 
