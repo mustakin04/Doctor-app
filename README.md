@@ -55,7 +55,7 @@ Experience the app in action:
 ### 1) Clone
 
 ```bash
-git clone https://github.com/<your-username>/<your-repo>.git
+git clone https://github.com/mustakin04/Doctor-app.git
 cd <my-project>
 ```
 
