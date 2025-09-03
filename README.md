@@ -223,7 +223,7 @@ Add images to `public/` and reference here.
 
 ## 📄 License
 
-MIT © <your-name>
+MIT © mustakin
 
 ---
 
@@ -231,8 +231,8 @@ MIT © <your-name>
 
 **Your Name**
 
-* Email: [your@email.com](mailto:your@email.com)
-* GitHub: [@your-username](https://github.com/your-username)
+* Email: mustakinhasan37@gmail.com
+* GitHub: https://github.com/mustakin04
 
 ---
 
