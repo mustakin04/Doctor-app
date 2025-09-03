@@ -73,14 +73,18 @@ const Login = () => {
         );
         toast.success("Login successful");
         console.log("Response:", res.data.data.user.role);
-        if(res.data.data.user.role===fromData){
+        const userRole = res.data.data.user.role.trim().toUpperCase();
+        if(userRole===fromData.role){
             setTimeout(() => {
-                navigate("/patient")
+                navigate("/layout/patient")
             }, 200);
-        }else{
+        }else if(userRole==="DOCTOR"){
             setTimeout(()=>{
                 navigate("/doctor")
             },200)
+        }
+        else{
+            console.log("not found")
         }
       } catch (err) {
         toast.error(err.response?.data?.message || "Login failed");

@@ -1,22 +1,28 @@
-import React from 'react'
-
-const DoctorCard = () => {
+import React from "react";
+import doctor from "../assets/registration.jpg"
+const DoctorCard = ({data}) => {
+  // console.log(data,"data")
   return (
-    <div className="card bg-base-100 w-96 shadow-sm">
-  <figure>
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-      alt="Shoes" />
-  </figure>
-  <div className="card-body">
-    <h2 className="card-title">Card Title</h2>
-    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-    <div className="card-actions justify-end">
-      <button className="btn btn-primary">Buy Now</button>
+    <div className="my-3 border">
+      <div className="card bg-base-100 w-96 shadow-sm">
+        <figure>
+          <img className="w-[100%] h-[350px]"
+            src={data.photo_url? data.photo_url: doctor}
+            alt="doctor"
+          />
+        </figure>
+        <div className="card-body p-3">
+          <h2 className="card-title font-sans font-medium text-xl">{data.name}</h2>
+          <p className="font-sans font-normal my-1">
+           {data.specialization}
+          </p>
+          <div className="card-actions justify-end ">
+            <button className="btn btn-primary py-4 px-10 bg-lime-500 rounded-md">Book Appointment</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-  )
-}
+  );
+};
 
-export default DoctorCard
+export default DoctorCard;

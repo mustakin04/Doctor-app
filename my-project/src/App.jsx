@@ -1,41 +1,41 @@
-import './App.css'
-import { createBrowserRouter } from "react-router";
-import { RouterProvider } from "react-router/dom";
-import Registration from './pages/registration';
-import RegistrationPatient from './pages/RegistrationPatient';
-import Login from './pages/Login';
-import Patient from './pages/Patient';
-import Doctor from './pages/Doctor';
+import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Registration from "./pages/Registration";
+import RegistrationPatient from "./pages/RegistrationPatient";
+import Login from "./pages/Login";
+import Patient from "./pages/Patient";
+import Doctor from "./pages/Doctor";
+import RootLayout from "./Layout/RootLayout";
 
 function App() {
   const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Registration></Registration>,
-  },
-  {
-    path: "/registrationPatient",
-    element: <RegistrationPatient></RegistrationPatient>,
-  },
-  {
-    path: "/login",
-    element: <Login></Login>,
-  },
-  {
-    path: "/patient",
-    element: <Patient></Patient>,
-  },
-  {
-    path: "/doctor",
-    element: <Doctor></Doctor>,
-  },
-  
-]);
-  return (
-    <>
-      <RouterProvider router={router} />,
-    </>
-  )
+    {
+      path: "/",
+      element: <Registration />,
+    },
+    {
+      path: "/registrationPatient",
+      element: <RegistrationPatient />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/layout",
+      element: <RootLayout />,
+      children: [
+        { index: true, element: <Patient /> },
+        { path: "patient", element: <Patient /> },
+      ],
+    },
+    {
+      path: "/doctor",
+      element: <Doctor />,
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
