@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Patient from "./pages/Patient";
 import Doctor from "./pages/Doctor";
 import RootLayout from "./Layout/RootLayout";
+import Error from "./pages/Error";
 
 function App() {
   const router = createBrowserRouter([
@@ -32,6 +33,10 @@ function App() {
     {
       path: "/doctor",
       element: <Doctor />,
+    },
+    {
+      path: "/error",
+      element: <Error />,
     },
   ]);
 

@@ -84,7 +84,9 @@ const Login = () => {
             },200)
         }
         else{
-            console.log("not found")
+            setTimeout(()=>{
+               navigate("/error")
+            },200)
         }
       } catch (err) {
         toast.error(err.response?.data?.message || "Login failed");
